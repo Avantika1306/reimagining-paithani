@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Reimagining Paithani</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-deep: #050507;
+      --bg-mid: #0A0A0C;
+      --bg-soft: #111111;
+      --gold: #C9A25A;
+      --accent-red: #7A001B;
+      --text-main: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg-deep);
+      color: var(--text-main);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .page {
+      background: var(--bg-deep);
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Paithani-style motif pattern (very subtle) */
+    .paithani-pattern {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .paithani-pattern::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.06;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(201,162,90,0.18) 0, transparent 55%),
+        radial-gradient(circle at 80% 10%, rgba(201,162,90,0.13) 0, transparent 55%),
+        radial-gradient(circle at 20% 80%, rgba(201,162,90,0.16) 0, transparent 55%),
+        radial-gradient(circle at 90% 70%, rgba(201,162,90,0.12) 0, transparent 55%);
+      mix-blend-mode: screen;
+    }
+
+    .gold-line {
+      height: 1px;
+      background: linear-gradient(
+        to right,
+        transparent,
+        rgba(201,162,90,0.7),
+        transparent
+      );
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem 1.5rem;
+      background: radial-gradient(circle at 50% 10%, #2a000c 0%, #050507 55%, #020203 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 760px;
+      height: 760px;
+      background: radial-gradient(circle, rgba(122,0,27,0.55), transparent 70%);
+      top: 52%;
+      left: 50%;
+      transform: translate(-50%, -15%);
+      filter: blur(2px);
+      z-index: 0;
+      opacity: 0.7;
+    }
+
+    .hero-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-title {
+      font-family: "Playfair Display", serif;
+      font-weight: 500;
+      font-size: clamp(2.8rem, 5vw, 4.8rem);
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+      margin-bottom: 0.85rem;
+    }
+
+    .hero-subtitle {
+      font-family: "Playfair Display", serif;
+      font-weight: 400;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      color: #ffffff;
+      opacity: 0.94;
+      line-height: 1.2;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-caption-wrap {
+      max-width: 640px;
+      margin: 1.75rem auto 0 auto;
+      padding: 1.25rem 0;
+      border-top: 1px solid rgba(201,162,90,0.4);
+      border-bottom: 1px solid rgba(201,162,90,0.4);
+    }
+
+    .hero-caption {
+      font-size: 0.98rem;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* SECTION WRAPPERS */
+
+    section {
+      position: relative;
+    }
+
+    .section-dark {
+      background: linear-gradient(to bottom, #111111, #0A0A0C);
+      padding: 4.5rem 0;
+    }
+
+    .section-darker {
+      background: linear-gradient(to bottom, #0A0A0C, #050507);
+      padding: 4.5rem 0;
+    }
+
+    .section-title-block {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-heading {
+      font-family: "Playfair Display", serif;
+      font-weight: 500;
+      font-size: clamp(2.1rem, 3.4vw, 3.2rem);
+      color: var(--gold);
+      padding: 1.2rem 3rem;
+      border: 1px solid rgba(201,162,90,0.25);
+      display: inline-block;
+      position: relative;
+    }
+
+    .section-heading::before,
+    .section-heading::after {
+      content: "";
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border: 1px solid rgba(201,162,90,0.7);
+    }
+
+    .section-heading::before {
+      top: -7px;
+      left: -7px;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    .section-heading::after {
+      bottom: -7px;
+      right: -7px;
+      border-left: none;
+      border-top: none;
+    }
+
+    .section-sub-line {
+      max-width: 420px;
+      margin: 1.5rem auto 0 auto;
+      opacity: 0.45;
+    }
+
+    /* GRID */
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      gap: 3rem;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 900px) {
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .two-col-3-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.6fr);
+      gap: 3rem;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 900px) {
+      .two-col-3-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* IMAGE PLACEHOLDER BASE STYLE */
+
+    .image-placeholder {
+      border: 1px solid rgba(201,162,90,0.7);
+      background: radial-gradient(circle at top, #22222a 0%, #101014 55%, #050507 100%);
+      color: rgba(201,162,90,0.7);
+      font-size: 0.8rem;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      box-sizing: border-box;
+    }
+
+    .image-placeholder span {
+      max-width: 80%;
+      line-height: 1.6;
+    }
+
+    /* Paithani arch frame */
+
+    .arch-frame {
+      position: relative;
+      border-radius: 32px 32px 24px 24px;
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+    }
+
+    .arch-inner-border {
+      position: absolute;
+      inset: 0;
+      border-radius: 32px 32px 24px 24px;
+      border: 1px solid rgba(201,162,90,0.3);
+      pointer-events: none;
+    }
+
+    .arch-inner-arch {
+      position: absolute;
+      left: 9%;
+      right: 9%;
+      top: 9%;
+      bottom: 9%;
+      border-radius: 32px 32px 24px 24px;
+      border: 1px solid rgba(201,162,90,0.26);
+    }
+
+    .arch-label-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 34px;
+      background: linear-gradient(to right, #25252b, #19191f);
+      border-bottom: 1px solid rgba(201,162,90,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    .arch-label-bar span {
+      font-family: "Playfair Display", serif;
+      font-size: 0.9rem;
+      color: rgba(201,162,90,0.7);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .arch-placeholder {
+      position: absolute;
+      inset: 34px 0 0 0;
+      z-index: 1;
+    }
+
+    /* NEW: Paithani image glow + image styling */
+
+    .paithani-image-wrap {
+      position: relative;
+    }
+
+    .paithani-image-wrap .arch-frame {
+      position: relative;
+      z-index: 1;
+      background: #050507;
+    }
+
+    .paithani-glow {
+      position: absolute;
+      inset: -14%;
+      background: radial-gradient(
+        circle at 50% 20%,
+        rgba(201,162,90,0.6),
+        transparent 70%
+      );
+      filter: blur(14px);
+      opacity: 0.32;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .paithani-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: sepia(0.12) contrast(1.08);
+    }
+
+    /* TEXT */
+
+    .body-text {
+      color: rgba(255,255,255,0.82);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .body-text p + p {
+      margin-top: 1rem;
+    }
+
+    /* STATS */
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 1.4rem;
+      margin-top: 2.4rem;
+    }
+
+    @media (max-width: 900px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+      }
+    }
+
+    .stat-card {
+      border: 1px solid rgba(201,162,90,0.23);
+      padding: 1.4rem 1.1rem;
+      background: radial-gradient(circle at top left, rgba(201,162,90,0.12), rgba(10,10,12,1));
+      text-align: center;
+    }
+
+    .stat-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.6rem;
+      color: var(--gold);
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: rgba(201,162,90,0.75);
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-value {
+      font-family: "Playfair Display", serif;
+      font-size: 1.1rem;
+      color: #ffffff;
+    }
+
+    /* ALAM JI SECTION */
+
+    .spotlight-wrap {
+      position: relative;
+    }
+
+    .spotlight-wrap::before {
+      content: "";
+      position: absolute;
+      inset: -15%;
+      background: radial-gradient(circle at 40% 35%, rgba(212,180,106,0.72) 0%, transparent 70%);
+      opacity: 0.22;
+      filter: blur(2px);
+      z-index: 0;
+    }
+
+    .portrait-frame {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      background: #0A0A0C;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .portrait-placeholder {
+      width: 100%;
+      height: 100%;
+    }
+
+    .quote-box {
+      position: relative;
+      border: 1px solid rgba(201,162,90,0.4);
+      background: linear-gradient(135deg, rgba(122,0,27,0.7), #050507);
+      padding: 2.25rem 2.5rem;
+      margin: 2rem 0 2.5rem 0;
+      overflow: hidden;
+    }
+
+    .quote-box::before,
+    .quote-box::after {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border: 1px solid rgba(201,162,90,0.75);
+    }
+
+    .quote-box::before {
+      top: 10px;
+      left: 10px;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    .quote-box::after {
+      bottom: 10px;
+      right: 10px;
+      border-left: none;
+      border-top: none;
+    }
+
+    .quote-arch {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 2px;
+      background: rgba(201,162,90,0.6);
+    }
+
+    .quote-text {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(1.4rem, 2.3vw, 1.9rem);
+      color: var(--gold);
+      font-style: italic;
+      line-height: 1.5;
+      margin-bottom: 0.75rem;
+    }
+
+    .quote-attrib {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 0.25rem;
+    }
+
+    .quote-trans {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.6);
+      font-style: italic;
+    }
+
+    /* HONOR SECTION */
+
+  /* --- OPEN, EDITORIAL HONOR SECTION --- */
+.honor-section {
+  padding: 80px 20px;
+}
+
+.honor-h1 {
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  font-size: clamp(2.2rem, 3.2vw, 3rem);
+  text-align: center;
+  color: #d7b878;
+  margin-bottom: 18px;
+}
+
+.honor-lede {
+  max-width: 780px;
+  margin: 0 auto 46px auto;
+  text-align: center;
+  color: #b3b3b3;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.honor-layout {
+  max-width: 980px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.honor-qr-box {
+  border-radius: 18px;
+  padding: 22px;
+  background: linear-gradient(145deg, rgba(18, 10, 14, 0.95), rgba(5, 0, 2, 0.98));
+
+  /* MAROON OUTLINE */
+  border: 2px solid #7a001b;
+
+  /* OUTER RING so it shows on dark backgrounds */
+  box-shadow:
+    0 0 0 2px rgba(122, 0, 27, 0.55),   /* maroon ring */
+    0 0 0 1px rgba(201, 162, 90, 0.18) inset, /* subtle gold inner */
+    0 18px 40px rgba(0, 0, 0, 0.65);
+}
+
+
+.honor-qr-img {
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 14px;
+  display: block;
+  margin: 0 auto;
+}
+
+.honor-qr-note {
+  margin-top: 14px;
+  color: #b3b3b3;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.honor-details {
+  padding-top: 10px;
+}
+
+.honor-detail {
+  margin-bottom: 18px;
+  padding-left: 18px;
+  border-left: 2px solid rgba(201, 162, 90, 0.65);
+}
+
+.honor-label {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.75rem;
+  color: rgba(215, 184, 120, 0.8);
+  margin-bottom: 6px;
+}
+
+.honor-value {
+  font-family: "Playfair Display", serif;
+  font-size: 1.6rem;
+  color: #f7f1e7;
+}
+
+.honor-body {
+  margin-top: 18px;
+  color: #b3b3b3;
+  font-size: 1rem;
+  line-height: 1.8;
+  max-width: 520px;
+}
+
+.honor-small {
+  margin-top: 14px;
+  color: rgba(215, 184, 120, 0.85);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  max-width: 520px;
+}
+
+/* Mobile: stack */
+@media (max-width: 900px) {
+  .honor-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .honor-details {
+    padding-top: 0;
+  }
+  .honor-body,
+  .honor-small {
+    max-width: 100%;
+  }
+}
+
+
+    /* SATRANI SECTION */
+
+    .satrani-header {
+      text-align: center;
+      padding-bottom: 2.3rem;
+      border-bottom: 1px solid rgba(122,0,27,0.5);
+      margin-bottom: 3rem;
+    }
+
+    .satrani-title {
+      font-family: "Playfair Display", serif;
+      font-weight: 500;
+      font-size: clamp(2.1rem, 3.3vw, 3.1rem);
+      color: #ffffff;
+    }
+
+    .satrani-title span {
+      color: var(--gold);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 1.4rem;
+    }
+
+    @media (max-width: 900px) {
+      .feature-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .feature-card {
+      border: 1px solid rgba(201,162,90,0.2);
+      background: radial-gradient(circle at top left, rgba(201,162,90,0.12), #111116);
+      padding: 1.4rem 1.1rem;
+      position: relative;
+    }
+
+    .feature-dot {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent-red);
+    }
+
+    .feature-title {
+      font-family: "Playfair Display", serif;
+      color: #ffffff;
+      font-size: 1.05rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .feature-desc {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.6;
+    }
+
+    /* FOOTER */
+
+    footer {
+      position: relative;
+      background: #000;
+      border-top: 1px solid rgba(201,162,90,0.28);
+      padding: 4rem 0 3.5rem 0;
+      text-align: center;
+    }
+
+    .footer-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-tagline {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      color: var(--gold);
+      font-size: clamp(1.5rem, 2.6vw, 2rem);
+      margin: 1.5rem 0 0.6rem 0;
+    }
+
+    .footer-text {
+      max-width: 600px;
+      margin: 0 auto 2rem auto;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+    }
+
+    .back-top-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.85rem 1.8rem;
+      border-radius: 0;
+      border: 2px solid var(--gold);
+      background: var(--accent-red);
+      color: var(--gold);
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .back-top-btn:hover {
+      background: var(--gold);
+      color: #000;
+    }
+
+    .back-top-icon {
+      font-size: 0.95rem;
+    }
+
+    .footer-copy {
+      margin-top: 1.8rem;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    @media (max-width: 600px) {
+      .hero-caption {
+        font-size: 0.82rem;
+        letter-spacing: 0.08em;
+      }
+
+      .quote-box {
+        padding: 1.7rem 1.5rem;
+      }
+.honor-qr-box {
+  border: 1.5px solid rgba(128, 0, 32, 0.9); /* deep maroon */
+  border-radius: 18px;
+  padding: 22px;
+  background: linear-gradient(
+    145deg,
+    rgba(18, 10, 14, 0.95),
+    rgba(5, 0, 2, 0.98)
+  );
+
+  /* subtle lift so the outline shows */
+  box-shadow:
+    0 0 0 1px rgba(215, 184, 120, 0.15),
+    0 18px 40px rgba(0, 0, 0, 0.6);
+}
+
+      .honor-card {
+        padding: 2rem 1.4rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="page">
+
+  <!-- HERO -->
+  <section class="hero paithani-pattern">
+    <div class="container hero-inner">
+      <div style="max-width:320px;margin:0 auto 2rem auto;opacity:0.6;">
+        <div class="gold-line"></div>
+      </div>
+
+      <h1 class="hero-title">Reimagining Paithani</h1>
+
+      <h2 class="hero-subtitle">Artisans Behind the Fabric</h2>
+
+      <div class="hero-caption-wrap">
+        <p class="hero-caption">
+          Stories of heritage, tailoring, textiles, and modern design.
+        </p>
+      </div>
+
+      <div style="max-width:320px;margin:2.5rem auto 0 auto;opacity:0.6;">
+        <div class="gold-line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAITHANI: A LIVING HERITAGE -->
+  <section class="section-dark">
+    <div class="container">
+
+      <div class="section-title-block">
+        <div class="section-heading">
+          Paithani: A Living Heritage
+        </div>
+        <div class="section-sub-line gold-line"></div>
+      </div>
+
+      <div class="two-col" style="margin-bottom:3.2rem;">
+        <!-- LEFT: FAMILY PHOTO WITH GLOW AS PAITHANI CLOSE-UP -->
+        <div>
+          <div class="paithani-image-wrap">
+            <div class="paithani-glow"></div>
+            <div class="arch-frame">
+              <div class="arch-inner-border"></div>
+              <div class="arch-inner-arch"></div>
+              <div class="arch-label-bar">
+                <span>Image: Family Archive.</span>
+              </div>
+              <div class="arch-placeholder">
+                <!-- Replace "paithani-family.jpg" with your actual image filename/path -->
+                <img
+                  src="paithani-family.jpg"
+                  alt="Vintage family portrait in Paithani sarees"
+                  class="paithani-photo"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: TEXT -->
+        <div>
+          <div class="body-text">
+            <p>
+              Paithani is one of Maharashtra’s oldest silk weaving traditions, created through slow, handwoven techniques that have been passed down for centuries. Known for its glowing silk, gold borders, and richly patterned pallus, each Paithani is built thread by thread with tapestry-style weaving that makes every motif unique. The most recognisable designs include the peacock, the lotus, parrot figures, and floral vines, each woven with careful precision that reflects the artistry of generations.
+            </p>
+            <p>
+              The colours used in Paithani carry deep cultural meaning, with reds representing auspiciousness and celebration, greens symbolising nature and renewal, and gold evoking prosperity and blessing. Together, the motifs and colours create a textile that is both visually rich and emotionally significant, turning every saree into a story of heritage, family memory, and craftsmanship. Across Maharashtra, Paithani has long been treasured at weddings and festivals because of this symbolism.
+            </p>
+            <p>
+              In today’s world, Paithani continues to influence both traditional and modern Indian fashion, although authentic pieces remain delicate, costly, and time-intensive to weave. This makes reinterpretation important, because younger audiences admire Paithani but often find it difficult to wear daily. By adapting Paithani-inspired motifs into lighter fabrics and contemporary silhouettes, designers can help preserve this living heritage while keeping it relevant, accessible, and celebrated in the present.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- STATS -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">🕒</div>
+          <div class="stat-label">Weave Time</div>
+          <div class="stat-value">18–24 months</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📍</div>
+          <div class="stat-label">Region</div>
+          <div class="stat-value">Paithan, Maharashtra</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">✧</div>
+          <div class="stat-label">Key Motifs</div>
+          <div class="stat-value">Peacock, Lotus</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📅</div>
+          <div class="stat-label">Heritage Era</div>
+          <div class="stat-value">2000+ years</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- THE TAILOR: ALAM JI -->
+  <section class="section-darker">
+    <div class="container">
+
+      <div class="section-title-block" style="margin-bottom:3.2rem;">
+        <div class="gold-line" style="max-width:400px;margin:0 auto 1.4rem auto;opacity:0.45;"></div>
+        <h2 class="hero-subtitle" style="margin-bottom:0;font-size:clamp(2rem,3.3vw,3rem);">
+          The Tailor: <span style="color:var(--gold);">Alam ji</span>
+        </h2>
+        <div class="gold-line" style="max-width:400px;margin:1.4rem auto 0 auto;opacity:0.45;"></div>
+      </div>
+
+      <div class="two-col-3-2">
+        <!-- LEFT: ALAM JI PORTRAIT WITH IMAGE -->
+        <div class="spotlight-wrap">
+          <div class="portrait-frame">
+            <img 
+              src="alam.jpg" 
+              alt="Alam ji portrait"
+              style="width:100%; height:100%; object-fit:cover; display:block;"
+            />
+          </div>
+        </div>
+
+        <!-- RIGHT: TEXT + QUOTE -->
+        <div>
+          <div class="body-text">
+            <p>
+              Alam ji is a skilled tailor based in Gurgaon, carrying forward a quiet legacy that began decades ago in the narrow bylanes of Old Delhi. His family's tailoring tradition spans three generations, his grandfather stitched ceremonial garments for local craftsmen and merchants, and his father continued the craft with the same discipline and devotion. Growing up around sewing machines, fabric rolls, and conversations about weave density and motif balance, Alam ji developed the ability to understand a fabric long before he touched it.
+            </p>
+            <p>
+              For him, tailoring is not just technical work, it is a form of respect. He often says that every fabric has its own personality: the softness of muslin, the weight of brocade, the delicate sheen of satin, and the vibrant character of Paithani-patterned silk. Over the years, he has trained his eye to read these qualities instantly. He notices how light interacts with a weave, how a motif must align perfectly, and how even the smallest seam can affect how confidently someone wears a garment.
+            </p>
+            <p>
+              In my project, his experience shaped the transformation of Paithani-patterned fabrics into structured, comfortable, and modern silhouettes. Before cutting a single piece, he carefully studied the placement of peacock motifs, the consistency of the borders, and the fall of the material. His guidance refined every detail, from strengthening the jacket panels to aligning the detachable skirt and ensuring movement without stiffness. His method is slow and thoughtful, a balance of engineering and artistry.
+            </p>
+            <p>
+              What makes his work special is his devotion to preserving the dignity of the textile. He once told me:
+            </p>
+          </div>
+
+          <!-- QUOTE CARD -->
+          <div class="quote-box">
+            <div class="quote-arch"></div>
+            <p class="quote-text">
+              "Kapda izzat maangta hai. Uski kahaani samajh kar hi design banta hai."
+            </p>
+            <p class="quote-attrib">— Alam ji</p>
+            <p class="quote-trans">
+              ("A fabric asks for respect. Only when you understand its story can you design it properly.")
+            </p>
+          </div>
+
+          <div class="body-text">
+            <p>
+              This philosophy, rooted in his Old Delhi heritage, shaped the heart of my project. It taught me that true craftsmanship is not about speed, it is about intention, empathy, and storytelling through design.
+            </p>
+            <p>
+              Through precision, patience, and decades of inherited wisdom, Alam ji brings a sense of authenticity and soul to every garment he creates. His hands carry the past, while his craft helps young designers imagine the future.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+<section id="honor-alam" class="honor-section">
+  <div class="container">
+
+    <h3 class="honor-h1">Honor Alam ji’s Craft</h3>
+
+    <p class="honor-lede">
+      Send a direct payment or bonus to Alam ji for his tailoring expertise and time.
+      This is a professional transfer, not charity, an honorarium for craftsmanship.
+    </p>
+
+    <div class="honor-layout">
+      <!-- LEFT: BIG QR BOX -->
+      <div class="honor-qr-box">
+        <img
+          src="alamqr.jpg"
+          alt="Paytm / UPI QR code for Alam ji"
+          class="honor-qr-img"
+        />
+        <p class="honor-qr-note">
+          If the Paytm name shows as <strong>“Rabban Rabban”</strong>, it is the correct account linked to Alam ji.
+        </p>
+      </div>
+
+      <!-- RIGHT: DETAILS -->
+      <div class="honor-details">
+        <div class="honor-detail">
+          <div class="honor-label">Name</div>
+          <div class="honor-value">Alam ji</div>
+        </div>
+
+        <div class="honor-detail">
+          <div class="honor-label">Preferred method</div>
+          <div class="honor-value">Paytm / UPI</div>
+        </div>
+
+        <p class="honor-body">
+          Scan the QR code using Paytm or any UPI app to send a direct honorarium.
+          Your payment recognises the time, skill, and heritage behind each stitch.
+        </p>
+
+        <p class="honor-small">
+          Note, the account name may appear as <strong>Rabban Rabban</strong> during payment confirmation.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+  </section>
+
+  <!-- FABRIC PARTNER: SATRANI FASHION -->
+  <section class="section-darker">
+    <div class="container">
+
+      <div class="satrani-header">
+        <h2 class="satrani-title">
+          Fabric Partner: <span>Satrani Fashion</span>
+        </h2>
+        <div class="gold-line" style="max-width:420px;margin:1.4rem auto 0 auto;opacity:0.45;"></div>
+      </div>
+
+      <div class="two-col" style="margin-bottom:3rem;">
+        <!-- TEXT -->
+        <div>
+          <div class="body-text">
+            <p>
+              Satrani Fashion is a popular online textile manufacturer known for creating affordable sarees inspired by traditional Indian weaving styles. Their collections often include Paithani-patterned designs with peacock borders, lotus motifs, zari-style detailing, and vibrant colour palettes that echo the look of heritage textiles. Because their fabrics are lightweight and easy to handle, they allow customers to enjoy the visual language of classical weaves without the cost or fragility of authentic handloom silk.
+            </p>
+            <p>
+              For design students and young creators, Satrani offers accessible material that encourages experimentation. The fabrics drape well, cut cleanly, and maintain consistent motif placement, which makes them especially useful for pattern drafting, panel alignment, and testing silhouettes. Their sarees are durable enough for multiple fittings and revisions, and the pricing makes it possible to explore different styles without fear of damaging an expensive piece.
+            </p>
+            <p>
+              In this project, Satrani Fashion played an important role by making Paithani-inspired textiles practical for upcycling and contemporary fashion. Their materials helped translate traditional motifs into modern outfits and DIY kits while staying mindful of sustainability and respect for the original craft. This choice supported the goal of keeping Paithani relevant for younger audiences by balancing cultural beauty with realistic, everyday usability.
+            </p>
+          </div>
+        </div>
+
+        <!-- FEATURE CARDS -->
+        <div>
+          <div class="feature-grid">
+            <div class="feature-card">
+              <div class="feature-dot"></div>
+              <h4 class="feature-title">Youth-Friendly</h4>
+              <p class="feature-desc">Modern patterns and palettes that speak to new generations.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-dot"></div>
+              <h4 class="feature-title">Motif Consistency</h4>
+              <p class="feature-desc">Borders and motifs placed with precision, respecting traditional layouts.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-dot"></div>
+              <h4 class="feature-title">Affordable</h4>
+              <p class="feature-desc">Pricing that allows students and young designers to experiment freely.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-dot"></div>
+              <h4 class="feature-title">Durable</h4>
+              <p class="feature-desc">Fabrics that hold structure and colour through repeated wear and styling.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="paithani-pattern">
+    <div class="container footer-inner">
+      <div class="gold-line" style="max-width:420px;margin:0 auto 1.6rem auto;opacity:0.4;"></div>
+
+      <p class="footer-tagline">
+        Upcycle. Contemporise. Modernise Paithani.
+      </p>
+
+      <p class="footer-text">
+        A personal project celebrating textile heritage, artisans, and sustainable design.
+      </p>
+
+      <button class="back-top-btn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+        <span class="back-top-icon">↑</span>
+        <span>Back to Top</span>
+      </button>
+
+      <div class="gold-line" style="max-width:420px;margin:2rem auto 0 auto;opacity:0.4;"></div>
+
+      <p class="footer-copy">
+        © 2025 Reimagining Paithani. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
